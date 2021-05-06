@@ -30,6 +30,10 @@ gem 'twitter'
 # gem 'dotenv-rails', require: 'dotenv/rails-now'
 # 最新版のAWS SDK For Rubyを使って、AWSサービスをアプリケーションに統合するrailsプラグイン
 gem 'aws-sdk-rails'
+# slim記法を適用する
+gem 'slim'
+# erb及びhtmlをslim記法に変換
+gem 'html2slim'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
