@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+div#wrapper {
+  font-family: "Chalkduster", "Wawati SC", sans-serif;
+  text-align: center;
+  height: auto;
+  background-color: pink;
+}
+
+header,
+footer {
+  background-color: black;
+  color: white;
+}
