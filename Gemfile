@@ -28,6 +28,9 @@ gem 'bootstrap', '~> 5.0.0.beta1'
 # twitter
 gem 'twitter'
 
+# 環境変数を定義する
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
