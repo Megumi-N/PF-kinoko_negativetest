@@ -34,6 +34,8 @@ gem 'aws-sdk-rails'
 gem 'slim'
 # erb及びhtmlをslim記法に変換
 gem 'html2slim'
+# twitterログイン関連
+gem 'omniauth-twitter'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
