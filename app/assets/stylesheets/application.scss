@@ -13,11 +13,13 @@
  *= require_tree .
  *= require_self
  */
-div#wrapper {
+$backcolor: #f5f5f5;
+
+.bodystyle {
+  background-color: $backcolor;
   font-family: "Chalkduster", "Wawati SC", sans-serif;
   text-align: center;
   height: auto;
-  background-color: pink;
 }
 
 header,
