@@ -312,6 +312,7 @@ DEPENDENCIES
   html2slim
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  omniauth
   omniauth-twitter
   pg (~> 1.1)
   pry-rails

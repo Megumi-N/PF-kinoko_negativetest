@@ -35,6 +35,7 @@ gem 'slim'
 # erb及びhtmlをslim記法に変換
 gem 'html2slim'
 # twitterログイン関連
+gem 'omniauth'
 gem 'omniauth-twitter'
 
 # Use Active Storage variant
