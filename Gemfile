@@ -34,6 +34,8 @@ gem 'aws-sdk-rails'
 gem 'slim'
 # erb及びhtmlをslim記法に変換
 gem 'html2slim'
+# generate時にslimを生成
+gem "slim-rails"
 # twitterログイン関連
 gem 'omniauth'
 gem 'omniauth-twitter'
