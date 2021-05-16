@@ -1,2 +1,17 @@
-h1 Results#index
-p Find me in app/views/results/index.html.slim
+h1
+  | あなたは
+  = @result.name
+  | な状態です。
+
+.img 
+  | ここに写真
+
+h2 
+  | 特性：
+  = @result.feature
+
+h3 
+  = @result.name 
+
+h3 
+  = @result.contents
