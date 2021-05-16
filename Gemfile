@@ -39,6 +39,10 @@ gem "slim-rails"
 # twitterログイン関連
 gem 'omniauth'
 gem 'omniauth-twitter'
+# aws comprehend
+gem 'aws-sdk-rails'
+gem 'aws-sdk-comprehend'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
