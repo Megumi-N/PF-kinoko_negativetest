@@ -1,2 +1,0 @@
-module TwitterAnalysesHelper
-end
