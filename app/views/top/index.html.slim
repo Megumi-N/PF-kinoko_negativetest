@@ -5,7 +5,10 @@
     | きのこで楽しく鬱診断！
   .mb-5.mt-5
 
-    = button_to "診断する", results_index_path, method: :get, class: 'button'
+    / = button_to "診断する", results_index_path, method: :get, class: 'button'
+    = form_with url: results_index_path, method: :get, local: true do |f|
+      = f.text_field :user
+      = f.submit '診断する'
 
   div
     h2
