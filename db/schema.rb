@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_24_051921) do
+ActiveRecord::Schema.define(version: 2021_05_27_230011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "result_wise_sayings", force: :cascade do |t|
+    t.bigint "result_id", null: false
+    t.bigint "wise_saying_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["result_id"], name: "index_result_wise_sayings_on_result_id"
+    t.index ["wise_saying_id"], name: "index_result_wise_sayings_on_wise_saying_id"
+  end
 
   create_table "results", force: :cascade do |t|
     t.string "name", null: false
@@ -30,11 +39,10 @@ ActiveRecord::Schema.define(version: 2021_05_24_051921) do
     t.string "title", null: false
     t.text "description", null: false
     t.string "person", null: false
-    t.bigint "result_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["result_id"], name: "index_wise_sayings_on_result_id"
   end
 
-  add_foreign_key "wise_sayings", "results"
+  add_foreign_key "result_wise_sayings", "results"
+  add_foreign_key "result_wise_sayings", "wise_sayings"
 end
