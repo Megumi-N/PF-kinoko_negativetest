@@ -8,11 +8,13 @@ html
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  body.bodystyle
+  body
+    header.py-4
+      .top
+        | みんなでたのしく鬱診断！
+      
     #wrapper
-      header.header.py-4
-        .top
-          | みんなでたのしく鬱診断！
       = yield
-      footer.fixed-bottom.py-4
-        |  利用規約・プライバシーポリシー
+      
+    footer.fixed-bottom.py-4
+      |  利用規約・プライバシーポリシー
