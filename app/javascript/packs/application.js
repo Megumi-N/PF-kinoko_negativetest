@@ -11,8 +11,13 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "bootstrap";
+import "jquery";
 import "../stylesheets/application";
 
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+
+const jQuery = require("jquery");
+global.$ = global.jQuery = jQuery;
+window.$ = window.jQuery = jQuery;
