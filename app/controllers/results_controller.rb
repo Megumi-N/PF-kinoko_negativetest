@@ -25,6 +25,7 @@ class ResultsController < ApplicationController
       kinoko = 10
     end
     @result = Result.find(kinoko)
+    @wise_saying = @result.wise_sayings
   end
 
   # 分析メソッド
@@ -59,7 +60,7 @@ class ResultsController < ApplicationController
     # end
 
     # @ave = (nega2/nega.length).truncate(2)
-    @ave = 0.8
+    @ave = 0.80
     
   end
 end
