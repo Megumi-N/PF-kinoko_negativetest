@@ -3,15 +3,28 @@ h1
   = @result.name
   | な状態です。
 
-.img 
-  | ここに写真
+.img-fluid
+  = image_tag @result.image, class: "img-thumbnail w-50"
 
-h2 
+h2
   | 特性：
   = @result.feature
 
-h3 
-  = @result.name 
+.card.col-md-6.shadow.p-3.mb-5.bg-white.rounded
+  .card-body
+    .type
+      | #{@result.name}タイプ
+    = simple_format @result.contents, class: "card-text"
 
-h3 
-  = @result.contents
+.card.col-md-6.shadow.p-3.mb-5.bg-white.rounded
+  .card-bodys
+    = simple_format @result.description, class: "card-text"
+
+.card.col-md-6.shadow.p-3.mb-5.bg-white.rounded
+  .card-bodys
+    = simple_format @wise_saying.first.person, class: "card-text"
+    = simple_format @wise_saying.first.description, class: "card-text"
+    |
+    = simple_format @wise_saying.second.person, class: "card-text"
+    = simple_format @wise_saying.second.description, class: "card-text"
+    

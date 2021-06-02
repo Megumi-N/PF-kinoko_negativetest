@@ -6,16 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# person1 = "ウィンストン・チャーチル"	
-# description1 = "決して屈するな。決して、決して、決して！"
-
-# ストレス高
+# high id:1~3 level:8~10
 Result.create(
   name: "カエンタケ",
   level: 10,
   feature:"触るだけで爛れる",
-  description: 
-    "夏から秋に発生する猛毒キノコ。<br>
+  description: "夏から秋に発生する猛毒キノコ。<br>
     西日本を中心に、東北地方でも発生が確認され、広葉樹林の付近に見られる。<br>
     表面はオレンジ色から赤色で、棒状。<br>
     土から指が出ているように地面から出てくる。<br>
@@ -76,7 +72,7 @@ Result.create(
   image: "benitengutake.png"
 )
 
-# ストレス中
+# middle id: 4~7 level:4~7
 Result.create(
   name: "ツキヨタケ",
   level: 7,
@@ -101,7 +97,7 @@ Result.create(
 Result.create(
   name: "カキシメジ",
   level: 6,
-  feature: "しいたけと間違えられる",
+  feature: "しいたけと激似",
   description: 
     "秋に発生するきのこ。毒キノコ御三家の1つ。<br>
     ブナなどの広葉樹の周辺やマツなどの針葉樹の周辺に発生する。<br>
@@ -111,7 +107,11 @@ Result.create(
     しいたけなどと間違えて誤食される。",
   contents:
     "カキシメジが出たあなたは、かなりネガティブ寄り！<br>
-    ネガティブ値は少し高く、上から4番目。<br>",
+    ネガティブ値は少し高く、上から4番目。<br>
+    若干ストレスが溜まっているのかな？<br>
+    ストレスが溜まると、しいたけとカキシメジを間違えて食べてしまうように、儲け話かと思ってやばい話を掴んじゃう可能性が高まるかも。<br>
+    一人でのリラックスタイムをなるべくとるようにして、ストレス解消をしてみよう。
+    ",
   image: "kakishimezi.png"
 )
 Result.create(
@@ -154,6 +154,7 @@ Result.create(
   image: "sasakurehitoyotake.png"
 )
 
+# low id: 8~10 level:1~3
 Result.create(
   name: "アミガサタケ",
   level: 3,
