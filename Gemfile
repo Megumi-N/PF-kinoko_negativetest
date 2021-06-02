@@ -28,8 +28,6 @@ gem 'bootstrap', '~> 5.0.0.beta1'
 gem 'twitter'
 # 環境変数を定義する => credentials.yml.encファイルがあるのでいらない
 # gem 'dotenv-rails', require: 'dotenv/rails-now'
-# 最新版のAWS SDK For Rubyを使って、AWSサービスをアプリケーションに統合するrailsプラグイン
-gem 'aws-sdk-rails'
 # slim記法を適用する
 gem 'slim'
 # erb及びhtmlをslim記法に変換
@@ -39,8 +37,9 @@ gem "slim-rails"
 # twitterログイン関連
 gem 'omniauth'
 gem 'omniauth-twitter'
-# aws comprehend
+# 最新版のAWS SDK For Rubyを使って、AWSサービスをアプリケーションに統合するrailsプラグイン
 gem 'aws-sdk-rails'
+# aws comprehend
 gem 'aws-sdk-comprehend'
 
 # Use Active Storage variant
