@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '3.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
@@ -38,8 +38,8 @@ gem "slim-rails"
 gem 'omniauth'
 gem 'omniauth-twitter'
 # 最新版のAWS SDK For Rubyを使って、AWSサービスをアプリケーションに統合するrailsプラグイン
-# aws comprehend
 gem 'aws-sdk-rails'
+# aws comprehend
 gem 'aws-sdk-comprehend'
 
 # Use Active Storage variant
