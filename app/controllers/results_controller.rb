@@ -25,7 +25,7 @@ class ResultsController < ApplicationController
       kinoko = 10
     end
     @result = Result.find(kinoko)
-    @wise_saying = @result.wise_sayings
+    @wise_saying = @result.wise_sayings.sample(2)
   end
 
   # 分析メソッド
