@@ -15,8 +15,10 @@
 
       / = button_to "診断する", results_index_path, method: :get, class: 'button'
       = form_with url: results_index_path, method: :get, local: true do |f|
-        = f.text_field :user
-        = f.submit '診断する'
+        p 
+          = f.text_field :user
+        p
+          = f.submit '診断する', class: 'button'
 
     div
       h2
@@ -44,11 +46,11 @@
       p
         | 食べたらやばい系は約200種らしい〜
       p
-        |  それってほとんど分かってないし、ほぼ毒きのこじゃ〜んって感じよね。
+        | それってほとんど分かってないし、ほぼ毒きのこだっていうことだよね。
       p
-        | ま、よくわかんないけど！
+        | こわ〜
       p
-        | ちな、このサイトを見ました〜
+        | ちなみに、このサイトを見ました〜！
       a[href="https://www.fukushihoken.metro.tokyo.lg.jp/shokuhin/kinoko/kiso.html"]
         | キノコの基礎知識
       p
