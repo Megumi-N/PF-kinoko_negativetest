@@ -14,6 +14,7 @@ import "jquery";
 import "bootstrap";
 import "bootstrap/scss/bootstrap";
 import "../stylesheets/application";
+import "./stylesheets/top/index";
 
 Rails.start();
 Turbolinks.start();
@@ -22,3 +23,5 @@ ActiveStorage.start();
 const jQuery = require("jquery");
 global.$ = global.jQuery = jQuery;
 window.$ = window.jQuery = jQuery;
+
+const images = require.context("../images", true);
