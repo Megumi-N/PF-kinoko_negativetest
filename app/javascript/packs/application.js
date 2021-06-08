@@ -13,8 +13,13 @@ import "channels";
 import "jquery";
 import "bootstrap";
 import "bootstrap/scss/bootstrap";
-import "../stylesheets/application";
-import "./stylesheets/top/index";
+
+require("packs/application");
+
+// import "../stylesheets/application.scss";
+// import "../stylesheets/application.scss";
+// import "../stylesheets/top/index.scss";
+// import "../stylesheets/result/index.scss";
 
 Rails.start();
 Turbolinks.start();
