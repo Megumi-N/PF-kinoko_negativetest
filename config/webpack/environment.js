@@ -1,3 +1,6 @@
-const { environment } = require('@rails/webpacker')
+const { environment } = require("@rails/webpacker");
 
-module.exports = environment
+// エントリーファイルの@importでのワイルドカード読み取り
+environment.loaders.get("sass").use.push("import-glob-loader");
+
+module.exports = environment;
