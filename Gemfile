@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # bootstrap
-gem 'bootstrap', '~> 5.0.0.beta1'
+# gem 'bootstrap', '~> 5.0.0.beta1'
 # twitter
 gem 'twitter'
 # 環境変数を定義する => credentials.yml.encファイルがあるのでいらない

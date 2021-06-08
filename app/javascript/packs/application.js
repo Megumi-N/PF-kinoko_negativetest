@@ -12,12 +12,17 @@ import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "jquery";
 import "bootstrap";
-import "../stylesheets/application";
+import "bootstrap/scss/bootstrap";
+
+require("packs/application");
+
+// import "../stylesheets/application.scss";
+// import "../stylesheets/application.scss";
+// import "../stylesheets/top/index.scss";
+// import "../stylesheets/result/index.scss";
 
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
 
-const jQuery = require("jquery");
-global.$ = global.jQuery = jQuery;
-window.$ = window.jQuery = jQuery;
+const images = require.context("../images", true);
