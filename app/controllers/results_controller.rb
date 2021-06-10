@@ -1,5 +1,6 @@
-class ResultsController < ApplicationController
-  
+class ResultsController < ApplicationController 
+  before_action :twitter, only: [:index]
+
   def index
     # negativeの平均割合から分岐
     case negativePoint = twitter_analysis
@@ -29,22 +30,20 @@ class ResultsController < ApplicationController
     @share = twitter_share
   end
 
-  # 分析メソッド
-  def twitter_analysis
-    # client = Twitter::REST::Client.new do |config|
-    #   config.consumer_key           = Rails.application.credentials.twitter[:api_key]
-    #   config.consumer_secret        = Rails.application.credentials.twitter[:api_secret_key]
-    #   config.access_token           = Rails.application.credentials.twitter[:access_token]
-    #   config.access_token_secret    = Rails.application.credentials.twitter[:access_token_secret]
-    # end
+  def twitter
+    twitter_client
+    @client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
+    
+    @tweets = []
+    @client.user_timeline(@user, exclude_replies: true, include_rts: false).take(1).each do |tw|
+      @tweets << tw.text
+    end
+  end
 
-    # user = params[:user]
-    
-    # @tweets = []
-    # client.user_timeline(user, exclude_replies: true, include_rts: false).take(1).each do |tw|
-    #   @tweets << tw.text
-    # end
-    
+  # twitter分析メソッド
+  def twitter_analysis
+    # binding.pry
+
     # twitter_params = {
     #   text_list: @tweets,
     #   language_code: "ja"
@@ -65,9 +64,11 @@ class ResultsController < ApplicationController
     
   end
 
-  def twitter_share
-    base = "https://twitter.com/intent/tweet?text="
-    link = "&url=https://kinokoshindan.herokuapp.com"
-    shareURL = base + "#{@result.name}です。あなたのツイートネガティブレベルは10段階で#{@result.level}！" + link
-  end
+  # def twitter_share
+  #   base = "https://twitter.com/intent/tweet?text="
+  #   user_name =
+  #   link = "&url=https://kinokoshindan.herokuapp.com"
+  #   shareURL = base + "#{@result.name}です。@#{@user}さんのツイートネガティブレベルは10段階で#{@result.level}！" + link
+  # end
 end
+
