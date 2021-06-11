@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base  
-  before_action :user_params
-
+  
   rescue_from Exception, with: :render_500
   rescue_from ActionController::RoutingError, with: :render_404 
   
@@ -26,19 +25,4 @@ class ApplicationController < ActionController::Base
     redirect_back(fallback_location: root_path)
   end  
 
-  
-  private
-
-  def user_params
-    @user = params[:user]
-  end
-  
-  def twitter_client
-    @client ||= Twitter::REST::Client.new do |config|
-      config.consumer_key           = Rails.application.credentials.twitter[:api_key]
-      config.consumer_secret        = Rails.application.credentials.twitter[:api_secret_key]
-      config.access_token           = Rails.application.credentials.twitter[:access_token]
-      config.access_token_secret    = Rails.application.credentials.twitter[:access_token_secret]
-    end
-  end  
 end
