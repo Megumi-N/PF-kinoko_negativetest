@@ -1,5 +1,4 @@
 class ResultsController < ApplicationController 
-
   def index
     # negativeの平均割合から分岐
     case negativePoint = twitter_analysis
@@ -31,22 +30,22 @@ class ResultsController < ApplicationController
 
   # twitter分析メソッド
   def twitter_analysis
-    
-    @client ||= Twitter::REST::Client.new do |config|
-      config.consumer_key           = Rails.application.credentials.twitter[:api_key]
-      config.consumer_secret        = Rails.application.credentials.twitter[:api_secret_key]
-      config.access_token           = Rails.application.credentials.twitter[:access_token]
-      config.access_token_secret    = Rails.application.credentials.twitter[:access_token_secret]
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = Rails.application.credentials.twitter[:api_key]
+      config.consumer_secret     = Rails.application.credentials.twitter[:api_secret_key]
+      config.access_token        = Rails.application.credentials.twitter[:access_token]
+      config.access_token_secret = Rails.application.credentials.twitter[:access_token_secret]
     end
   
-    @user = params[:user]  
-    @client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
+    @user = user_params[:user]
+
+    client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
     
     @tweets = []
-    @client.user_timeline(@user, exclude_replies: true, include_rts: false).take(1).each do |tw|
+    
+    client.user_timeline(@user, exclude_replies: true, include_rts: false).take(1).each do |tw|
       @tweets << tw.text
     end
-    # binding.pry
 
     # twitter_params = {
     #   text_list: @tweets,
@@ -74,5 +73,11 @@ class ResultsController < ApplicationController
   #   link = "&url=https://kinokoshindan.herokuapp.com"
   #   shareURL = base + "#{@result.name}です。さんのツイートネガティブレベルは10段階で#{@result.level}！" + link
   # end
+  private
+
+  def user_params
+    params.permit(:user)
+  end
+
 end
 
