@@ -69,10 +69,10 @@ class ResultsController < ApplicationController
 
   def twitter_share
     base = "https://twitter.com/intent/tweet?text="
-    user_name =
     link = "&url=https://kinokoshindan.herokuapp.com"
     shareURL = base + "#{@result.name}です。#{@user}さんのツイートネガティブレベルは#{@result.level}！" + link
   end
+
   private
 
   def user_params

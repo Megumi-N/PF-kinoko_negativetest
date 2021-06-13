@@ -1,3 +1,4 @@
+
 .result_title
   span #{@user}さんは
   .kinoko_name #{@result.name}
@@ -6,8 +7,7 @@
 .img-fluid
   = image_pack_tag @result.image, class: "img-thumbnail w-50"
 
-h2
-  | 特性：#{@result.feature}
+h2 特性：#{@result.feature}
 
 .card.col-md-6.shadow.p-3.mb-5.bg-white.rounded.mx-auto
   .card-body
