@@ -17,13 +17,10 @@ html
   body
     header.py-4
       .top
-        | みんなでたのしく鬱診断！
+        = render template: 'shared/_header'
       
     #wrapper
       = yield
       
     footer.py-4
-      = render template: 'shared/_privacy_policy'
-      |・
-      .purapo 
-      = render template: 'shared/_terms_of_use'
+      = render template: 'shared/_footer'
