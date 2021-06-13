@@ -25,7 +25,7 @@ class ResultsController < ApplicationController
     end
     @result = Result.find(kinoko)
     @wise_saying = @result.wise_sayings.sample(2)
-    # @share = twitter_share
+    @share = twitter_share
   end
 
   # twitter分析メソッド
@@ -67,12 +67,12 @@ class ResultsController < ApplicationController
     
   end
 
-  # def twitter_share
-  #   base = "https://twitter.com/intent/tweet?text="
-  #   user_name =
-  #   link = "&url=https://kinokoshindan.herokuapp.com"
-  #   shareURL = base + "#{@result.name}です。さんのツイートネガティブレベルは10段階で#{@result.level}！" + link
-  # end
+  def twitter_share
+    base = "https://twitter.com/intent/tweet?text="
+    user_name =
+    link = "&url=https://kinokoshindan.herokuapp.com"
+    shareURL = base + "#{@result.name}です。#{@user}さんのツイートネガティブレベルは#{@result.level}！" + link
+  end
   private
 
   def user_params

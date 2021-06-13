@@ -1,19 +1,19 @@
-h1
-  | あなたは
-  = @result.name
-  | な状態です。
+.result_title
+  span #{@user}さんは
+  .kinoko_name #{@result.name}
+  span な状態です。
 
 .img-fluid
   = image_pack_tag @result.image, class: "img-thumbnail w-50"
 
 h2
-  | 特性：
-  = @result.feature
+  | 特性：#{@result.feature}
 
 .card.col-md-6.shadow.p-3.mb-5.bg-white.rounded.mx-auto
   .card-body
     .type
       | #{@result.name}タイプ
+      | ネガティブレベル：#{@result.level}
     = simple_format @result.contents, class: "card-text"
 
 .card.col-md-6.shadow.p-3.mb-5.bg-white.rounded.mx-auto
@@ -28,4 +28,4 @@ h2
     = simple_format @wise_saying.second.person, class: "card-text"
     = simple_format @wise_saying.second.description, class: "card-text"
 
-/ = link_to 'twitter', @share, target: '_blank', rel: 'noreferrer'
+= link_to 'twitter', @share, target: '_blank', rel: 'noreferrer'

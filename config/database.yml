@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: kinoko2_production
-  username: kinoko2
+  database: kinoko2_development
+  # username: kinoko2
   password: <%= ENV['KINOKO2_DATABASE_PASSWORD'] %>
