@@ -1,8 +1,8 @@
-class ResultsController < ApplicationController 
+class ResultsController < ApplicationController
   def index
     # negativeの平均割合から分岐
     case negativePoint = twitter_analysis
-    when 0.90..negativePoint      
+    when 0.90..negativePoint
       kinoko = 1
     when 0.80...0.90
       kinoko = 2
@@ -36,13 +36,12 @@ class ResultsController < ApplicationController
       config.access_token        = Rails.application.credentials.twitter[:access_token]
       config.access_token_secret = Rails.application.credentials.twitter[:access_token_secret]
     end
-  
+
     @user = user_params[:user]
 
-    client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
-    
+    @account = client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
+
     @tweets = []
-    
     client.user_timeline(@user, exclude_replies: true, include_rts: false).take(1).each do |tw|
       @tweets << tw.text
     end
@@ -54,7 +53,7 @@ class ResultsController < ApplicationController
 
     # comprehend = Aws::Comprehend::Client.new(region: 'us-east-1')
     # nega = comprehend.batch_detect_sentiment(twitter_params).result_list
-    
+
     # i=0
     # nega2=0
     # while i < nega.length
@@ -64,13 +63,26 @@ class ResultsController < ApplicationController
 
     # @ave = (nega2/nega.length).truncate(2)
     @ave = 0.80
-    
+
   end
 
   def twitter_share
+    case @result.level
+    when 1...3
+      text = "ネガティブ度低め。元気いっぱい！"
+    when 4...7
+      text = "ネガティブ度はまぁまぁ。程よいネガティブ度。"
+    else
+      text = "ネガティブ度高め。だいぶお疲れのようす。"
+    end
+
     base = "https://twitter.com/intent/tweet?text="
+
+    tweet_contents = "あなたの直近のツイートは#{@result.name}タイプです。%0a「#{@result.feature}」な特性を持っています。%0a#{@account.name}さんのツイートネガティブレベルは10段階中#{@result.level}。%0a" + text
+    hashtags = "&hashtags=きのこネガティブ診断,きのこ"
     link = "&url=https://kinokoshindan.herokuapp.com"
-    shareURL = base + "#{@result.name}です。#{@user}さんのツイートネガティブレベルは#{@result.level}！" + link
+
+    shareURL = base + tweet_contents + hashtags + link
   end
 
   private
@@ -78,5 +90,6 @@ class ResultsController < ApplicationController
   def user_params
     params.permit(:user)
   end
+
 
 end
