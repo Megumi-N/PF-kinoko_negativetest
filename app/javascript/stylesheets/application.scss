@@ -2,6 +2,9 @@
 @import "shared/terms_of_use";
 
 $backcolor: #f5f5f5;
+$title_text: clamp(25px, 50px, 6vw);
+$sub_title_text: clamp(20px, 35px, 5vw);
+$text: clamp(15px, 20px, 4vw);
 
 html body {
   background-color: $backcolor;
@@ -14,9 +17,13 @@ header,
 footer {
   background-color: black;
   color: white;
-  font-size: 2vw;
+  font-size: $text;
 }
 
 #wrapper {
   margin: 0;
+}
+
+.modal-body {
+  font-size: $text;
 }
