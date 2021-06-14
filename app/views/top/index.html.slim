@@ -9,9 +9,13 @@
   .container-fluid
     p.mt-5 あなたはどのきのこ？<br>きのこでネガティブ診断！
     .mb-5.mt-5
-      = h(flash[:danger])
+      - if flash.present?
+        = h(flash[:danger])
+      - else
+        = "ツイッターのユーザー名を入れてね。"
+
       = form_with url: results_index_path, method: :get, local: true do |f|
-        p = f.text_field :user, autofocus: true, placeholder: '公開アカウントを入力'
+        p = f.text_field :user, autofocus: true, placeholder: '@のあとを入力'
         p = f.submit '診断する', class: 'button'
 
     div
@@ -31,6 +35,6 @@
         p それってほとんど分かってないし、ほぼ毒きのこだっていうことだよね。
         p こわ〜
         p ちなみに、このサイトを見ました〜！
-        p 
+        p
           a[href="https://www.fukushihoken.metro.tokyo.lg.jp/shokuhin/kinoko/kiso.html"]
             | キノコの基礎知識

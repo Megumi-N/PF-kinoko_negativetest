@@ -21,6 +21,10 @@ p.mt-5 {
   font-size: $title_text;
 }
 
+.mb-5.mt-5 {
+  font-size: $text;
+}
+
 .marker {
   background: linear-gradient(transparent 65%, #bad3ff 0%);
   width: auto;
