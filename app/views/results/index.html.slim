@@ -1,6 +1,6 @@
 .result_title
   span #{@user}さんは
-  .kinoko_name 
+  .kinoko_name
     span #{@result.name}
   span な状態です。
 
@@ -11,7 +11,7 @@
   .feature #{@result.feature}
   .type #{@result.name}タイプ
   .level ネガティブレベル：#{@result.level}
-  
+
 .card.col-md-9.shadow.p-3.mb-5.bg-white.rounded.mx-auto
   .card-body
     .card-text
@@ -30,7 +30,13 @@
       = render partial: 'wise_saying', collection: @wise_sayings
 
 .twitter_share
-  = link_to @share, target: '_blank', rel: 'noreferrer' do 
+  = link_to @share, target: '_blank', rel: 'noreferrer' do
     i class="fab fa-twitter"
     | 結果をツイートする
-  
+
+p or
+
+.return_link
+  = link_to root_path do
+    i class="fas fa-door-open"
+    | トップページに戻る
