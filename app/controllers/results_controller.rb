@@ -24,7 +24,7 @@ class ResultsController < ApplicationController
       kinoko = 10
     end
     @result = Result.find(kinoko)
-    @wise_saying = @result.wise_sayings.sample(2)
+    @wise_sayings = @result.wise_sayings.sample(3)
     @share = twitter_share
   end
 
@@ -80,4 +80,3 @@ class ResultsController < ApplicationController
   end
 
 end
-
