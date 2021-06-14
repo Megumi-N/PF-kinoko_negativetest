@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title kinoko
+    title =yield(:title)
     meta name="twitter:card" content="summary_large_image"
     meta name="twitter:site" content="@wiwiwi20d"
     meta property="og:url" content="https://kinokoshindan.herokuapp.com/"
@@ -9,7 +9,7 @@ html
     meta property="og:description" content="直近のツイートのネガティブ度をきのこで判定！"
     meta property="og:image" content="https://kinokoshindan.herokuapp.com/packs/media/images/shirotamagotengutake-49f131d360d889ef857590b41043c7e4.png"
     meta[name="viewport" content="width=device-width,initial-scale=1"]
-    script crossorigin="anonymous" src="https://cdn.lr-ingest.io/LogRocket.min.js" 
+    script crossorigin="anonymous" src="https://cdn.lr-ingest.io/LogRocket.min.js"
     javascript:
       window.LogRocket && window.LogRocket.init('tmai4r/kinoko');
     = csrf_meta_tags
@@ -20,9 +20,9 @@ html
     header.py-4
       .top
         = render template: 'shared/_header'
-      
+
     #wrapper
       = yield
-      
+
     footer.py-4
       = render template: 'shared/_footer'
