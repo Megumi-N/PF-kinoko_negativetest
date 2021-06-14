@@ -11,14 +11,43 @@
   margin: 0 auto;
 }
 
-// .result_title {
-//   margin: 30px;
-// }
+.feature,
+.type,
+.level {
+  font-size: clamp(20px, 2vw, 3vw);
+}
 
-// .result_title span {
-//   font-size: 30px;
-// }
+.result_title {
+  margin: 30px;
+}
 
-// .result_title .kinoko_name {
-//   font-size: 50px;
-// }
+.result_title span {
+  font-size: clamp(15px, 2vw, 3vw);
+}
+
+.result_title .kinoko_name span {
+  font-size: clamp(25px, 6vw, 7vw);
+  font: bold;
+  background: linear-gradient(transparent 65%, #ffc7af 0%);
+  width: auto;
+}
+
+.sub_result_title {
+  margin: 15px 0;
+}
+
+.card-body span.title.marker {
+  background: linear-gradient(transparent 65%, #bad3ff 0%);
+  width: auto;
+  font-size: clamp(20px, 30px, 5vw);
+}
+
+.card-text * {
+  margin-top: 1em;
+  font-size: clamp(15px, 20px, 4vw);
+}
+
+.twitter_share {
+  font-size: clamp(15px, 20px, 4vw);
+  margin: 1em;
+}
