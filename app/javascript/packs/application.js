@@ -13,6 +13,7 @@ import "channels";
 import "jquery";
 import "bootstrap";
 import "bootstrap/scss/bootstrap";
+import "@fortawesome/fontawesome-free/js/all";
 
 require("packs/application");
 
