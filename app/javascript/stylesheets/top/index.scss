@@ -17,7 +17,20 @@
   opacity: 0.7;
 }
 
+p.mt-5 {
+  font-size: clamp(25px, 50px, 6vw);
+}
+
 .marker {
   background: linear-gradient(transparent 65%, #bad3ff 0%);
   width: auto;
+}
+
+div h2 span.marker {
+  font-size: clamp(20px, 35px, 6vw);
+}
+
+.mt-4 p {
+  margin-top: 1em;
+  font-size: clamp(15px, 20px, 4vw);
 }
