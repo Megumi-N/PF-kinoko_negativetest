@@ -6,23 +6,40 @@ $backcolor: #f5f5f5;
 $title_text: clamp(25px, 50px, 6vw);
 $sub_title_text: clamp(20px, 35px, 5vw);
 $text: clamp(15px, 20px, 4vw);
-
-html body {
-  background-color: $backcolor;
-  font-family: "Chalkduster", "Wawati SC", sans-serif;
-  text-align: center;
-  height: auto;
-}
-
-header,
-footer {
+@mixin header_footer_common {
   background-color: black;
   color: white;
   font-size: $text;
 }
 
-#wrapper {
+html body {
+  background-color: $backcolor;
+  font-family: "Chalkduster", "Wawati SC", sans-serif;
+  text-align: center;
   margin: 0;
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+header {
+  @include header_footer_common;
+  padding: 2vh;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  @include header_footer_common;
+  z-index: 100;
+  // padding-bottom: 15vh; //←footerの高さ/
+  box-sizing: border-box;
+  bottom: 0;
+  width: 100%;
+  padding: 2vh;
+  // height: auto; // Set the fixed height of the footer here
 }
 
 .modal-body {

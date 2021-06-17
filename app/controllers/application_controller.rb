@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   rescue_from Twitter::Error::NotFound, with: :not_found
   rescue_from Twitter::Error::Unauthorized, with: :unauthorized
 
-
   def render_404
     render template: 'errors/error_404', status: 404
   end
