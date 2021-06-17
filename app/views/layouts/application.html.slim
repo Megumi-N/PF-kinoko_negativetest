@@ -17,12 +17,13 @@ html
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    header.py-4
+    header
       .top
         = render template: 'shared/_header'
 
-    #wrapper
-      = yield
+    main
+      .container
+        = yield
 
-    footer.py-4
+    footer
       = render template: 'shared/_footer'

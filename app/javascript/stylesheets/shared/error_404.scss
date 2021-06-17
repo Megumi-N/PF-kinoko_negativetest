@@ -1,0 +1,13 @@
+.error {
+  height: 50vh;
+  margin: 0;
+}
+
+.error .error_title {
+  margin-top: 20vh;
+  font-size: $sub_title_text;
+}
+
+.error .error_discription {
+  font-size: $text;
+}
