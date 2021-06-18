@@ -63,7 +63,7 @@ class ResultsController < ApplicationController
     # end
 
     # @ave = (nega2/nega.length).truncate(2)
-    # @ave = 0.80
+    @ave = 0.80
 
   end
 
