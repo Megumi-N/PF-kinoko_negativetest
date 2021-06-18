@@ -12,8 +12,8 @@
     p.mt-5 あなたはどのきのこ？<br>きのこネガティブ診断！
 
     p
-     a.dropdown-toggle.play_link aria-controls="collapse" aria-expanded="false" data-bs-toggle="collapse" href="#collapse" role="button" 
-      | きのこネガティブ診断について 
+     a.dropdown-toggle.play_link aria-controls="collapse" aria-expanded="false" data-bs-toggle="collapse" href="#collapse" role="button"
+      | きのこネガティブ診断について
     #collapse.collapse
       p 直近ツイートのネガティブを測定し、10段階で評価！
       p level1がスーパーポジティブ、level10がスーパーネガティブ！
@@ -27,7 +27,10 @@
 
       = form_with url: results_index_path, method: :get, local: true do |f|
         p = f.text_field :user, autofocus: true, placeholder: '@のあとを入力'
-        p = f.submit '診断する', class: 'button'
+        p
+          = check_box_tag :check, '1'
+          = label_tag :check, '利用規約に同意する'
+        p = f.submit '診断する', class: 'button', id: 'submit', disable_with: '診断中...', style: 'display: none;
 
     div
       h2
@@ -49,3 +52,5 @@
         p
           a[href="https://www.fukushihoken.metro.tokyo.lg.jp/shokuhin/kinoko/kiso.html"]
             | キノコの基礎知識
+
+
