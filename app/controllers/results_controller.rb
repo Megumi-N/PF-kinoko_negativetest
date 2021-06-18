@@ -42,14 +42,15 @@ class ResultsController < ApplicationController
     @account = client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
 
     @tweets = []
-    client.user_timeline(@user, exclude_replies: true, include_rts: false).take(1).each do |tw|
+    client.user_timeline(@user, exclude_replies: true, include_rts: false).take(3).each do |tw|
       @tweets << tw.text
     end
 
-    # twitter_params = {
-    #   text_list: @tweets,
-    #   language_code: "ja"
-    # }
+    twitter_params = {
+      text_list: @tweets,
+      language_code: "ja"
+    }
+
 
     # comprehend = Aws::Comprehend::Client.new(region: 'us-east-1')
     # nega = comprehend.batch_detect_sentiment(twitter_params).result_list
@@ -62,7 +63,7 @@ class ResultsController < ApplicationController
     # end
 
     # @ave = (nega2/nega.length).truncate(2)
-    @ave = 0.80
+    # @ave = 0.80
 
   end
 

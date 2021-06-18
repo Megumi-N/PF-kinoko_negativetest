@@ -4,6 +4,20 @@
   margin: auto;
 }
 
+.container-fluid p {
+  a.dropdown-toggle.play_link{
+    text-decoration: none;
+    color: black;
+    &:hover{
+      text-decoration: underline;
+      color: green;
+    }
+  }
+  #collapse.collapse {
+    text-decoration: underline;
+  }
+}
+
 .button {
   font-size: 5em;
   font-family: "Chalkduster", "Wawati SC", sans-serif;
