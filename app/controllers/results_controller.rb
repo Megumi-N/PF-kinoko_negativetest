@@ -63,8 +63,16 @@ class ResultsController < ApplicationController
     # end
 
     # @ave = (nega2/nega.length).truncate(2)
-    @ave = 0.80
-
+    @ave = 0.90
+    # @ave = 0.80
+    # @ave = 0.70
+    # @ave = 0.60
+    # @ave = 0.50
+    # @ave = 0.40
+    # @ave = 0.30
+    # @ave = 0.20
+    # @ave = 0.10
+    # @ave = 0.00
   end
 
   def twitter_share
