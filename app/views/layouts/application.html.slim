@@ -9,9 +9,19 @@ html
     meta property="og:description" content="直近のツイートのネガティブ度をきのこで判定！"
     meta property="og:image" content="https://kinokoshindan.herokuapp.com/packs/media/images/shirotamagotengutake-49f131d360d889ef857590b41043c7e4.png"
     meta[name="viewport" content="width=device-width,initial-scale=1"]
+
     script crossorigin="anonymous" src="https://cdn.lr-ingest.io/LogRocket.min.js"
     javascript:
       window.LogRocket && window.LogRocket.init('tmai4r/kinoko');
+
+    script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5FMGPEDX64"
+    javascript:
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5FMGPEDX64');
+
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
