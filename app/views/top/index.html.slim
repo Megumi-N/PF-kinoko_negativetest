@@ -12,12 +12,13 @@
     p.mt-5 あなたはどのきのこ？<br>きのこネガティブ診断！
 
     p
-     a.dropdown-toggle.play_link aria-controls="collapse" aria-expanded="false" data-bs-toggle="collapse" href="#collapse" role="button"
+    a.dropdown-toggle.play_link aria-controls="collapse" aria-expanded="false" data-bs-toggle="collapse" href="#collapse" role="button"
       | きのこネガティブ診断について
     #collapse.collapse
-      p 直近ツイートのネガティブを測定し、10段階で評価！
-      p level1がスーパーポジティブ、level10がスーパーネガティブ！
-      p あなたのlevelはどのくらいかな？
+      .app_discription
+        | 直近ツイートのネガティブを測定し、10段階で評価！<br>
+        | level1がスーパーポジティブ、level10がスーパーネガティブ！<br>
+        | あなたのlevelはどのくらいかな？<br>
 
     .mb-5.mt-5
       - if flash.present?
