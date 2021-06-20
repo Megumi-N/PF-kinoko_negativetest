@@ -1,1 +1,2 @@
-require("../../js/index");
+require("../../js/top/index");
+

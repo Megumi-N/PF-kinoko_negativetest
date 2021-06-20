@@ -7,6 +7,6 @@
     | お探しのページは見つかりませんでした
 
 .return_link
-  = link_to root_path do
+  = link_to root_path, data: {"turbolinks" => false} do
     i class="fas fa-door-open"
     | トップページに戻る
