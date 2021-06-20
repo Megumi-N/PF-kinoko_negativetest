@@ -55,13 +55,24 @@ class ResultsController < ApplicationController
     comprehend = Aws::Comprehend::Client.new(region: 'us-east-1')
     nega = comprehend.batch_detect_sentiment(twitter_params).result_list
 
-    i=0
-    negative_point=0
-    while i < nega.length
-      negative_point = nega[i].sentiment_score.negative
-      i+=1
-    end
-    @ave = (negative_point/nega.length).truncate(2)
+    # i = 0
+    # nega2=0
+    # while i < nega.length do
+    #   nega2 = nega[i].sentiment_score.negative
+    #   i+=1
+    # end
+    nega2 = nega[0].sentiment_score.negative
+    nega2 += nega[1].sentiment_score.negative
+    nega2 += nega[2].sentiment_score.negative
+    nega2 += nega[3].sentiment_score.negative
+    nega2 += nega[4].sentiment_score.negative
+    nega2 += nega[5].sentiment_score.negative
+    nega2 += nega[6].sentiment_score.negative
+    nega2 += nega[7].sentiment_score.negative
+    nega2 += nega[8].sentiment_score.negative
+    nega2 += nega[9].sentiment_score.negative
+
+    @ave = (nega2/nega.length).truncate(2)
   end
 
   def twitter_share
