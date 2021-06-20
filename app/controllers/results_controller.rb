@@ -53,18 +53,17 @@ class ResultsController < ApplicationController
       language_code: "ja"
     }
 
-    # comprehend = Aws::Comprehend::Client.new(region: 'us-east-1')
-    # nega = comprehend.batch_detect_sentiment(twitter_params).result_list
+    comprehend = Aws::Comprehend::Client.new(region: 'us-east-1')
+    nega = comprehend.batch_detect_sentiment(twitter_params).result_list
 
-    # i=0
-    # negative_point=0
-    # while i < nega.length
-    #   negative_point = nega[i].sentiment_score.negative
-    #   i+=1
-    # end
+    i=0
+    negative_point=0
+    while i < nega.length
+      negative_point = nega[i].sentiment_score.negative
+      i+=1
+    end
 
-    # @ave = (negative_point/nega.length).truncate(2)
-    @ave = 0.90
+    @ave = (negative_point/nega.length).truncate(2)
   end
 
   def twitter_share
