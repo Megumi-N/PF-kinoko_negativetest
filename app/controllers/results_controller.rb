@@ -39,7 +39,7 @@ class ResultsController < ApplicationController
     end
 
     @user = user_params[:user]
-
+    # binding.pry
     @account = client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
 
     @tweets = []
@@ -67,11 +67,11 @@ class ResultsController < ApplicationController
 
   def twitter_share
     case @result.level
-    when 1...3
+    when 1...4
       text = "ネガティブ度低め。元気いっぱい！"
-    when 4...7
+    when 4...8
       text = "ネガティブ度はまぁまぁ。程よいネガティブ度。"
-    else
+    when 8...10
       text = "ネガティブ度高め。だいぶお疲れのようす。"
     end
 
