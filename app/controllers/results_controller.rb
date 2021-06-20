@@ -1,8 +1,9 @@
 class ResultsController < ApplicationController
+  before_action :twitter_analysis, only: [:index]
   def index
     # negativeの平均割合から分岐
-    case negativePoint = twitter_analysis
-    when 0.90..negativePoint
+    case @ave
+    when 0.90...1.00
       kinoko = 1
     when 0.80...0.90
       kinoko = 2
@@ -55,23 +56,12 @@ class ResultsController < ApplicationController
     comprehend = Aws::Comprehend::Client.new(region: 'us-east-1')
     nega = comprehend.batch_detect_sentiment(twitter_params).result_list
 
-    # i = 0
-    # nega2=0
-    # while i < nega.length do
-    #   nega2 = nega[i].sentiment_score.negative
-    #   i+=1
-    # end
-    nega2 = nega[0].sentiment_score.negative
-    nega2 += nega[1].sentiment_score.negative
-    nega2 += nega[2].sentiment_score.negative
-    nega2 += nega[3].sentiment_score.negative
-    nega2 += nega[4].sentiment_score.negative
-    nega2 += nega[5].sentiment_score.negative
-    nega2 += nega[6].sentiment_score.negative
-    nega2 += nega[7].sentiment_score.negative
-    nega2 += nega[8].sentiment_score.negative
-    nega2 += nega[9].sentiment_score.negative
-
+    i = 0
+    nega2=0
+    while i < nega.length do
+      nega2 += nega[i].sentiment_score.negative
+      i+=1
+    end
     @ave = (nega2/nega.length).truncate(2)
   end
 
