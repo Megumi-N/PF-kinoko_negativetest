@@ -52,9 +52,6 @@ class ResultsController < ApplicationController
       text_list: @tweets,
       language_code: "ja"
     }
-    
-    binding.pry
-
     comprehend = Aws::Comprehend::Client.new(region: 'us-east-1')
     nega = comprehend.batch_detect_sentiment(twitter_params).result_list
 
@@ -64,8 +61,6 @@ class ResultsController < ApplicationController
       negative_point = nega[i].sentiment_score.negative
       i+=1
     end
-
-    binding.pry
     @ave = (negative_point/nega.length).truncate(2)
   end
 
