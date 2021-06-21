@@ -24,6 +24,7 @@
     span.title.marker どんなきのこ？
     .card-text
       = simple_format @result.description
+      = link_to 'wikipediaへGo！', @result.link, target: "_blank", rel: 'noreferrer'
 
 .card.col-md-9.shadow.p-3.mb-5.bg-white.rounded.mx-auto
   .card-body
