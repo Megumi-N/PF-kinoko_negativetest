@@ -8,10 +8,12 @@ window.onload = function () {
   $checkBox.addEventListener("change", () => {
     let checkBoxVal = $checkBox.value;
     if (checkBoxVal == 1) {
-      $submitButton.style.display = "";
+      $submitButton.removeAttribute("disabled");
+      $submitButton.classList.value="button"
       $checkBox.value = 0;
     } else {
-      $submitButton.style.display = "none";
+      $submitButton.disabled = "false";
+      $submitButton.classList.value="button_disabled"
       $checkBox.value = 1;
     }
   });
