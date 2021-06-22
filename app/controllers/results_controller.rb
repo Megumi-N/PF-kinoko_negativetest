@@ -90,6 +90,10 @@ class ResultsController < ApplicationController
     tweet_contents = "あなたの直近のツイートは#{@result.name}タイプです。%0a「#{@result.feature}」な特性を持っています。%0a#{@account.name}さんのツイートネガティブレベルは10段階中#{@result.level}。%0a" + text
     hashtags = "&hashtags=きのこネガティブ診断,きのこ"
     link = "&url=https://kinokoshindan.herokuapp.com"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0c82a8baacf01d4d4963dc6164802723b3b9d404
     shareURL = base + tweet_contents + hashtags + link
   end
 
