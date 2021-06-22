@@ -1,28 +1,29 @@
 doctype html
 html
   head
-    title kinoko
+    title = full_title(yield(:title))
     meta name="twitter:card" content="summary_large_image"
     meta name="twitter:site" content="@wiwiwi20d"
     meta property="og:url" content="https://kinokoshindan.herokuapp.com/"
-    meta property="og:title" content="きのこネガティブ診断"
+    meta property="og:title" content= full_title(yield(:title))
     meta property="og:description" content="直近のツイートのネガティブ度をきのこで判定！"
-    meta property="og:image" content="https://kinokoshindan.herokuapp.com/packs/media/images/shirotamagotengutake-49f131d360d889ef857590b41043c7e4.png"
+    meta  property="og:image" content="https://kinokoshindan.herokuapp.com/packs/media/images/amigasatake-a0045880245ff738c222123689b941d1.png"
+    / meta  property="og:image" content= (content_for?(:image_url) ? yield(:image_url) : full_url('/javsascript/images/kakishimezi.png'))
     meta[name="viewport" content="width=device-width,initial-scale=1"]
-    script crossorigin="anonymous" src="https://cdn.lr-ingest.io/LogRocket.min.js" 
-    javascript:
-      window.LogRocket && window.LogRocket.init('tmai4r/kinoko');
+    - if Rails.env.development?
+      = render template: 'shared/_analysis'
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    header.py-4
+    header
       .top
         = render template: 'shared/_header'
-      
-    #wrapper
-      = yield
-      
-    footer.py-4
+
+    main
+      .container
+        = yield
+
+    footer
       = render template: 'shared/_footer'

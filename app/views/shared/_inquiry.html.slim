@@ -1,0 +1,22 @@
+/! Button trigger modal
+a#inquiry data-bs-target="#inquiry_modal" data-bs-toggle="modal" type="button"
+  | お問い合わせ
+  /! Modal
+#inquiry_modal.modal.fade aria-hidden="true" aria-labelledby="staticBackdropLabel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  .modal-dialog.modal-xl
+    .modal-content
+      .modal-header
+        h2.modal-title.w-100.text-center お問い合わせ先
+        button.btn-close aria-label="Close" data-bs-dismiss="modal" type="button" style='padding: 1em;'
+      .modal-body
+        p 「きのこネガティブ診断」をご利用いただきありがとうございます。
+        p 不具合やレイアウト崩れ、その他ご意見・ご要望・お問い合わせなどは下記TwitterアカウントのDMまで送っていただけると大変助かります。
+        p 【 @kinoko70898737 】
+
+      .modal-footer
+        button.btn.btn-secondary data-bs-dismiss="modal" type="button"  Close
+
+
+
+
+

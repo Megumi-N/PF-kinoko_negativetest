@@ -1,7 +1,3 @@
-// Place all the styles related to the results controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
-
 .img {
   width: 50%;
   height: 50%;
@@ -11,14 +7,46 @@
   margin: 0 auto;
 }
 
-// .result_title {
-//   margin: 30px;
-// }
+.result_title {
+  margin: 30px;
+}
 
-// .result_title span {
-//   font-size: 30px;
-// }
+// 結果
+.result_title span {
+  font-size: $sub_title_text;
+}
 
-// .result_title .kinoko_name {
-//   font-size: 50px;
-// }
+// 結果のきのこ名
+.result_title .kinoko_name span {
+  font-size: $title_text;
+  background: linear-gradient(transparent 65%, #ffc7af 0%);
+  width: auto;
+}
+
+// サブタイトル囲み
+.sub_result_title {
+  margin: 15px 0;
+}
+
+.feature,
+.type,
+.level {
+  font-size: $sub_title_text;
+}
+
+.card-body span.title.marker {
+  background: linear-gradient(transparent 65%, #bad3ff 0%);
+  width: auto;
+  font-size: $sub_title_text;
+}
+
+.card-text * {
+  margin-top: 1em;
+  font-size: $text;
+}
+
+.twitter_share,
+.return_link {
+  font-size: $text;
+  margin: 1em;
+}

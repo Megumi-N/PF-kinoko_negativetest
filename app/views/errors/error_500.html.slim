@@ -1,7 +1,12 @@
+- content_for(:title, '500エラー')
+
 .error
   .error_title
     | 500 Internal Server Error
   .error_discription
     | アクセスしようとしたページは表示できませんでした。
 
-  
+.return_link
+  = link_to root_path, data: {"turbolinks" => false} do
+    i class="fas fa-door-open"
+    | トップページに戻る

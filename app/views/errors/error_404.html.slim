@@ -1,7 +1,12 @@
+- content_for(:title, '404エラー')
+
 .error
   .error_title
     | 404 Not Found
   .error_discription
     | お探しのページは見つかりませんでした
 
-  
+.return_link
+  = link_to root_path, data: {"turbolinks" => false} do
+    i class="fas fa-door-open"
+    | トップページに戻る
