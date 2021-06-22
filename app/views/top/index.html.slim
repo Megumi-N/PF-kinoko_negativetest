@@ -31,7 +31,7 @@
         p
           = check_box_tag :check, '1'
           = label_tag :check, 'プライバシーポリシー及び利用規約に同意する'
-        p = f.submit '診断する', class: 'button', id: 'submit', disable_with: '診断中...', style: 'display: none;'
+        p = f.submit '診断する', class: 'button_disabled', id: 'submit', disabled: 'disabled'
 
     div
       h2
