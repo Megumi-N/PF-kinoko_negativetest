@@ -11,18 +11,7 @@ html
     meta[name="viewport" content="width=device-width,initial-scale=1"]
 
     - if Rails.env.development?
-      script crossorigin="anonymous" src="https://cdn.lr-ingest.io/LogRocket.min.js"
-      javascript:
-        window.LogRocket && window.LogRocket.init('tmai4r/kinoko');
-
-      script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5FMGPEDX64"
-      javascript:
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-5FMGPEDX64');
-
+      = render template: 'shared/_analysis'
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
