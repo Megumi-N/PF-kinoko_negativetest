@@ -4,7 +4,9 @@
   .error_title
     | 500 Internal Server Error
   .error_discription
-    | アクセスしようとしたページは表示できませんでした。
+    | 大変申し訳ありません。<br/>
+    | サーバーで問題が発生しているため、アクセスしようとしたページは表示できませんでした。<br/>
+    | お手数をおかけしますが、しばらくしてから再度アクセスしてください。<br/>
 
 .return_link
   = link_to root_path, data: {"turbolinks" => false} do
