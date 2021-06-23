@@ -1,0 +1,12 @@
+/! Button trigger modal
+a#privacy_policy data-bs-target="#privacyStaticBackdrop" data-bs-toggle="modal" type="button"
+  | プライバシーポリシー
+| と
+/! Button trigger modal
+a#terms_of_use data-bs-target="#termsOfUseStaticBackdrop" data-bs-toggle="modal" type="button"
+  | 利用規約
+|に同意する
+
+= render partial: 'agreement/modal_privacy'
+= render partial: 'agreement/modal_terms_of_use'
+
