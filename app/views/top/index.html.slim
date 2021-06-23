@@ -1,4 +1,4 @@
-- content_for(:title, 'あなたのツイートのネガティブ度を診断します！')
+- content_for(:title, 'あなたのツイートのネガティブ度を診断します！- ')
 
 .container
   .balloons
@@ -30,7 +30,8 @@
         p = f.text_field :user, autofocus: true, placeholder: '@のあとを入力'
         p
           = check_box_tag :check, checked: false
-          = label_tag :check, 'プライバシーポリシー及び利用規約に同意する'
+          = label_tag :check
+            = render partial: 'agreement/user_agreement'
         p = f.submit '診断する', class: 'button_disabled', id: 'submit', disabled: 'disabled'
 
     div
