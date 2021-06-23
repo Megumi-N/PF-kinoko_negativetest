@@ -1,15 +1,15 @@
-@import "shared/privacy_policy";
-@import "shared/terms_of_use";
-@import "shared/inquiry";
+$backcolor: #f5f5f5; //bodyの背景色
 
-$backcolor: #f5f5f5;
+// textのサイズ設定
 $title_text: clamp(25px, 50px, 6vw);
 $sub_title_text: clamp(20px, 35px, 5vw);
 $text: clamp(15px, 20px, 4vw);
+
 @mixin header_footer_common {
   background-color: black;
   color: white;
   font-size: $text;
+  padding: 2vh;
 }
 
 html body {
@@ -24,7 +24,6 @@ html body {
 
 header {
   @include header_footer_common;
-  padding: 2vh;
 }
 
 main {
@@ -37,11 +36,6 @@ footer {
   // padding-bottom: 15vh; //←footerの高さ/
   box-sizing: border-box;
   bottom: 0;
-  width: 100%;
-  padding: 2vh;
+  width: 100vw;
   // height: auto; // Set the fixed height of the footer here
-}
-
-.modal-body {
-  font-size: $text;
 }

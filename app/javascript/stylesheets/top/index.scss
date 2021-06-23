@@ -4,11 +4,14 @@
   margin: auto;
 }
 
+#check {
+  margin-right: 1em;
+}
 .container-fluid p {
-  a.dropdown-toggle.play_link{
+  a.dropdown-toggle.play_link {
     text-decoration: none;
     color: black;
-    &:hover{
+    &:hover {
       text-decoration: underline;
       color: green;
     }
@@ -18,24 +21,26 @@
   }
 }
 
-.button_disabled{
-  font-size: 5em;
-  font-family: "Chalkduster", "Wawati SC", sans-serif;;
+@mixin buttonBasicSetting {
+  font-size: clamp(25px, 10vw, 12vw);
   border-radius: 20px;
+}
+
+//ボタンが非活性の時
+.button_disabled {
+  @include buttonBasicSetting;
   cursor: not-allowed;
 }
 
+//ボタンが活性の時
 .button {
-  font-size: 5em;
-  font-family: "Chalkduster", "Wawati SC", sans-serif;
+  @include buttonBasicSetting;
   background-color: #2e8b57;
   color: white;
-  border-radius: 20px;
   cursor: pointer;
-}
-
-.button:hover {
-  opacity: 0.7;
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 p.mt-5 {

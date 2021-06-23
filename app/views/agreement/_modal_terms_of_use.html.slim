@@ -1,9 +1,6 @@
-/! Button trigger modal
-a#terms_of_use data-bs-target="#terms_of_use_modal" data-bs-toggle="modal" type="button"
-  | 利用規約
-  /! Modal
-#terms_of_use_modal.modal.fade aria-hidden="true" aria-labelledby="staticBackdropLabel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  .modal-dialog.modal-xl
+/! Modal
+#termsOfUseStaticBackdrop.modal.fade aria-hidden="true" aria-labelledby="staticBackdropLabel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  .modal-dialog.modal-dialog-scrollable.modal-xl
     .modal-content
       .modal-header
         h2.modal-title.w-100.text-center 利用規約
