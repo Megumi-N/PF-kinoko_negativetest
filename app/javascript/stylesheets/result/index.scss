@@ -1,52 +1,58 @@
+//画像
 .img {
   width: 50%;
   height: 50%;
 }
 
-.card {
-  margin: 0 auto;
-}
-
+//タイトル関連
 .result_title {
   margin: 30px;
+  span {
+    font-size: $sub_title_text;
+  }
+  .kinoko_name span {
+    font-size: $title_text;
+    background: linear-gradient(transparent 65%, #ffc7af 0%);
+    width: auto;
+  }
 }
 
-// 結果
-.result_title span {
-  font-size: $sub_title_text;
-}
-
-// 結果のきのこ名
-.result_title .kinoko_name span {
-  font-size: $title_text;
-  background: linear-gradient(transparent 65%, #ffc7af 0%);
-  width: auto;
-}
-
-// サブタイトル囲み
+//サブタイトル関連
 .sub_result_title {
   margin: 15px 0;
+  .feature,
+  .type,
+  .level {
+    font-size: $sub_title_text;
+  }
 }
 
-.feature,
-.type,
-.level {
-  font-size: $sub_title_text;
+//カード関連のcss
+.card {
+  margin: 0 auto;
+  .card-body span.title.marker {
+    background: linear-gradient(transparent 65%, #bad3ff 0%);
+    width: auto;
+    font-size: $sub_title_text;
+  }
+  .card-text {
+    margin-top: 1rem;
+    font-size: $text;
+  }
 }
 
-.card-body span.title.marker {
-  background: linear-gradient(transparent 65%, #bad3ff 0%);
-  width: auto;
-  font-size: $sub_title_text;
-}
-
-.card-text * {
-  margin-top: 1em;
-  font-size: $text;
-}
-
+//twitter share関連のcss
 .twitter_share,
 .return_link {
   font-size: $text;
   margin: 1em;
+}
+
+
+.wise_saying_description p{
+  font-size: $text;
+}
+
+.wise_saying_person p{
+  font-size: clamp(10px, 15px, 3vw);
 }
