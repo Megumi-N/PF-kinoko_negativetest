@@ -13,7 +13,8 @@ module ApplicationHelper
 
   # 参照urlをdevとprodで分けるメソッド
   def full_url(path)
-    domain =  Rails.env.development? ? 'http://0.0.0.0:3000' : 'https://kinokoshindan.herokuapp.com'
+    # domain =  Rails.env.development? ? 'http://0.0.0.0:3000' : 'https://kinokoshindan.herokuapp.com'
+    domain =  Rails.env.development? ? 'http://0.0.0.0:3000' : 'https://kinokoshindan-staging.herokuapp.com'
     "#{domain}#{path}"
   end
 
