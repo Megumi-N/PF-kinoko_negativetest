@@ -1,5 +1,6 @@
 - content_for(:title, '診断結果')
-- content_for(:image_url, full_url("javascript/images/#{@result.image}"))
+- content_for(:description, "#{@account.name}は#{@result.name}タイプです！")
+- content_for(:image_url, full_url(image_pack_url(@result.image)))
 
 .result_title
   span #{@user}さんは
