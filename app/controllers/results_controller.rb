@@ -80,15 +80,15 @@ class ResultsController < ApplicationController
   def twitter_share
     case @result.level
     when 1...4
-      text = "ネガティブ度低め。元気いっぱい！"
+      text = "🍄ネガティブ度:低"
     when 4...8
-      text = "ネガティブ度はまぁまぁ。程よいネガティブ度。"
+      text = "🍄ネガティブ度:中"
     else
-      text = "ネガティブ度高め。だいぶお疲れのようす。"
+      text = "🍄ネガティブ度:高"
     end
 
     base = "https://twitter.com/intent/tweet?text="
-    tweet_contents = "🍄#{@account.name}は#{@result.name}タイプ%0a🍄「#{@result.feature}」な特性%0a🍄ネガティブレベルは#{@result.level}%0a"+ text
+    tweet_contents = "🍄#{@account.name}は#{@result.name}タイプ%0a🍄特性：#{@result.feature}%0a🍄ネガティブレベル：#{@result.level}%0a"+ text
     hashtags = "%0a%20%23きのこネガティブ診断%20%20%23きのこ%0a"
     link = "&url=#{request.url}"
     shareURL = base + tweet_contents + hashtags + link
@@ -101,8 +101,6 @@ class ResultsController < ApplicationController
   end
   
   def comming_twitter
-    # request.referrer == "https://t.co/.*$" ? redirect_to(root_path) : request.url
-    request.referrer == "https://t.co/.*$" ? redirect_to(root_path) : request.url
-    # request.referrer == request.url ? redirect_to(root_path) : request.url
+    request.referrer == "https://t.co/" ? redirect_to(root_url) : request.url
   end
 end
