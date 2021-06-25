@@ -87,7 +87,7 @@ class ResultsController < ApplicationController
     end
 
     base = "https://twitter.com/intent/tweet?text="
-    tweet_contents = "#{@account.name}は#{@result.name}タイプ%0a🍄特性：#{@result.feature}%0a🍄ネガティブレベル：#{@result.level}%0a"+ text
+    tweet_contents = "#{@account.name}は#{@result.name}タイプ%0a🍄特性:#{@result.feature}%0a🍄ネガティブレベル:#{@result.level}%0a"+ text
     hashtags = "%0a%20%23きのこネガティブ診断%20%20%23きのこ%0a"
     # link = "&url=#{request.url}"
     link = "&url=#{root_url}"
