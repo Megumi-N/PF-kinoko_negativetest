@@ -1,10 +1,10 @@
 class ResultsController < ApplicationController
-  # before_action :comming_twitter
+  before_action :comming_twitter, only: [:index]
 
   def index
     # negativeの平均割合から分岐
     twitter_analysis
-    
+
     case @ave
     when 0.90...1.00
       kinoko = 1
@@ -34,46 +34,43 @@ class ResultsController < ApplicationController
 
   # twitter分析メソッド
   def twitter_analysis
+
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = Rails.application.credentials.twitter[:api_key]
       config.consumer_secret     = Rails.application.credentials.twitter[:api_secret_key]
       config.access_token        = Rails.application.credentials.twitter[:access_token]
       config.access_token_secret = Rails.application.credentials.twitter[:access_token_secret]
     end
+
     @user = user_params[:user]
     @account = client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
-     @tweets = []
     
-     # exclude_replies: true => 返信を除去, include_rts: false => retweetを除去
-     client.user_timeline(@user, exclude_replies: true, include_rts: false).take(10).each do |tw|
-       # ハッシュ、url、空欄、改行、ファイルを削除
-       @tweets << tw.text.gsub(/#.*$/, "").gsub(/http.*\s/, "").gsub(/[ 　]+/,"").gsub(/\n/,"").gsub(/http.*\z/,"")
-     end
+    if Rails.env.production?
+      @tweets = []
+      # exclude_replies: true => 返信を除去, include_rts: false => retweetを除去
+      client.user_timeline(@user, exclude_replies: true, include_rts: false).take(10).each do |tw|
+        # ハッシュ、url、空欄、改行、ファイルを削除
+        @tweets << tw.text.gsub(/#.*$/, "").gsub(/http.*\s/, "").gsub(/[ 　]+/,"").gsub(/\n/,"").gsub(/http.*\z/,"")
+      end
 
-     twitter_params = {
-       text_list: @tweets,
-       language_code: "ja"
-     }
-     comprehend = Aws::Comprehend::Client.new(region: 'us-east-1')
-     nega = comprehend.batch_detect_sentiment(twitter_params).result_list
+      twitter_params = {
+        text_list: @tweets,
+        language_code: "ja"
+      }
 
-     i = 0
-     nega2=0
-     while i < nega.length do
-       nega2 += nega[i].sentiment_score.negative
-       i+=1
-     end
-     @ave = (nega2/nega.length).truncate(2)
-    # @ave= 0.90
-    # @ave= 0.80
-    # @ave= 0.70
-    # @ave= 0.60
-    # @ave= 0.50
-    # @ave= 0.40
-    # @ave= 0.30
-    # @ave= 0.20
-    # @ave= 0.10
-    # @ave= 0.00
+      comprehend = Aws::Comprehend::Client.new(region: 'us-east-1')
+      nega = comprehend.batch_detect_sentiment(twitter_params).result_list
+
+      i = 0
+      nega2=0
+      while i < nega.length do
+        nega2 += nega[i].sentiment_score.negative
+        i+=1
+      end
+      @ave = (nega2/nega.length).truncate(2)
+    else
+      @ave= 0.00
+    end
   end
 
   def twitter_share
@@ -100,7 +97,8 @@ class ResultsController < ApplicationController
     params.permit(:user)
   end
   
-  # def comming_twitter
-  #   request.referrer == "https://t.co/" ? redirect_to(root_url) : request.url
-  # end
+
+  def comming_twitter
+    request.referrer != root_url ? root_url : request.url
+  end
 end
