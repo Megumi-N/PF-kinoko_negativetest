@@ -1,35 +1,37 @@
 class ResultsController < ApplicationController
-  before_action :comming_twitter, only: [:index]
-
   def index
-    # negativeの平均割合から分岐
-    twitter_analysis
+    if request.referrer == root_url
+      # negativeの平均割合から分岐
+      twitter_analysis
 
-    case @ave
-    when 0.90...1.00
-      kinoko = 1
-    when 0.80...0.90
-      kinoko = 2
-    when 0.70...0.80
-      kinoko = 3
-    when 0.60...0.70
-      kinoko = 4
-    when 0.50...0.60
-      kinoko = 5
-    when 0.40...0.50
-      kinoko = 6
-    when 0.30...0.40
-      kinoko = 7
-    when 0.20...0.30
-      kinoko = 8
-    when 0.10...0.20
-      kinoko = 9
+      case @ave
+      when 0.90...1.00
+        kinoko = 1
+      when 0.80...0.90
+        kinoko = 2
+      when 0.70...0.80
+        kinoko = 3
+      when 0.60...0.70
+        kinoko = 4
+      when 0.50...0.60
+        kinoko = 5
+      when 0.40...0.50
+        kinoko = 6
+      when 0.30...0.40
+        kinoko = 7
+      when 0.20...0.30
+        kinoko = 8
+      when 0.10...0.20
+        kinoko = 9
+      else
+        kinoko = 10
+      end
+      @result = Result.find(kinoko)
+      @wise_sayings = @result.wise_sayings.sample(3)
+      @share = twitter_share
     else
-      kinoko = 10
+      redirect_to root_url
     end
-    @result = Result.find(kinoko)
-    @wise_sayings = @result.wise_sayings.sample(3)
-    @share = twitter_share
   end
 
   # twitter分析メソッド
@@ -86,8 +88,8 @@ class ResultsController < ApplicationController
     base = "https://twitter.com/intent/tweet?text="
     tweet_contents = "#{@account.name}は#{@result.name}タイプ%0a🍄特性:#{@result.feature}%0a🍄ネガティブレベル:#{@result.level}%0a"+ text
     hashtags = "%0a%20%23きのこネガティブ診断%20%20%23きのこ%0a"
-    # link = "&url=#{request.url}"
-    link = "&url=#{root_url}"
+    link = "&url=#{request.url}"
+    # link = "&url=#{root_url}"
     shareURL = base + tweet_contents + hashtags + link
   end
 
@@ -95,10 +97,5 @@ class ResultsController < ApplicationController
 
   def user_params
     params.permit(:user)
-  end
-  
-
-  def comming_twitter
-    request.referrer != root_url ? root_url : request.url
   end
 end
