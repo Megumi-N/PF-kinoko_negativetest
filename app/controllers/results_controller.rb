@@ -1,7 +1,10 @@
 class ResultsController < ApplicationController
-  before_action :twitter_analysis, only: [:index]
+  before_action :comming_twitter
+
   def index
     # negativeの平均割合から分岐
+    twitter_analysis
+    
     case @ave
     when 0.90...1.00
       kinoko = 1
@@ -37,7 +40,6 @@ class ResultsController < ApplicationController
       config.access_token        = Rails.application.credentials.twitter[:access_token]
       config.access_token_secret = Rails.application.credentials.twitter[:access_token_secret]
     end
-
     @user = user_params[:user]
     # binding.pry
     @account = client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
@@ -86,13 +88,9 @@ class ResultsController < ApplicationController
     end
 
     base = "https://twitter.com/intent/tweet?text="
-
-    tweet_contents = "●#{@account.name}は#{@result.name}タイプ%0a
-                    　●「#{@result.feature}」な特性%0a
-                      ●ネガティブレベルは#{@result.level}%0a"
-                     + text
-    hashtags = "&hashtags=きのこネガティブ診断,きのこ"
-    link = "&url=https://kinokoshindan.herokuapp.com"
+    tweet_contents = "🍄#{@account.name}は#{@result.name}タイプ%0a🍄「#{@result.feature}」な特性%0a🍄ネガティブレベルは#{@result.level}%0a"+ text
+    hashtags = "%0a%20%23きのこネガティブ診断%20%20%23きのこ%0a"
+    link = "&url=#{request.url}"
     shareURL = base + tweet_contents + hashtags + link
   end
 
@@ -100,5 +98,11 @@ class ResultsController < ApplicationController
 
   def user_params
     params.permit(:user)
+  end
+  
+  def comming_twitter
+    # request.referrer == "https://t.co/.*$" ? redirect_to(root_path) : request.url
+    request.referrer == "https://t.co/.*$" ? redirect_to(root_path) : request.url
+    # request.referrer == request.url ? redirect_to(root_path) : request.url
   end
 end
