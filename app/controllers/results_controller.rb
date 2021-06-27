@@ -4,8 +4,8 @@ class ResultsController < ApplicationController
   def index
     # negativeの平均割合から分岐
       # @ave = 0.60
-
-      twitter_analysis
+      # @user = user_params[:user]
+      request.referrer!=root_url ? false : twitter_analysis
       case @ave
       when 0.90...1.00
         kinoko = 1
@@ -81,7 +81,9 @@ class ResultsController < ApplicationController
     end
 
     base = "https://twitter.com/intent/tweet?text="
-    tweet_contents = "#{@account.name}は#{@result.name}タイプ%0a🍄特性:#{@result.feature}%0a🍄ネガティブレベル:#{@result.level}%0a"+ text + "%0a%23きのこ%20%0a%23きのこネガティブ診断%20%0a"
+    # tweet_contents = "#{@account.name}は#{@result.name}タイプ%0a🍄特性:#{@result.feature}%0a🍄ネガティブレベル:#{@result.level}%0a"+ text + "%0a%23きのこ%20%0a%23きのこネガティブ診断%20%0a"
+    tweet_contents = "#{@result.name}タイプ%0a🍄特性:#{@result.feature}%0a🍄ネガティブレベル:#{@result.level}%0a"+ text + "%0a%23きのこ%20%0a%23きのこネガティブ診断%20%0a"
+    add_url_parameter
     # shareURL = base + tweet_contents + @url_parameter
     shareURL = base + tweet_contents + root_url
   end
