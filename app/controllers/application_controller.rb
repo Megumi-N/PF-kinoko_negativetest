@@ -39,4 +39,9 @@ class ApplicationController < ActionController::Base
       config.access_token_secret = Rails.application.credentials.twitter[:access_token_secret]
     end
   end
+
+  # root_url以外からresultにアクセス不可
+  def referrer_root_url?
+    request.referrer != root_url ? redirect_to(root_url) : false
+  end
 end
