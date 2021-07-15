@@ -78,7 +78,8 @@ class ResultsController < ApplicationController
     end
 
     base = "https://twitter.com/intent/tweet?text="
-    tweet_contents = "#{@account.name}さんは...%0a#{@result.name}タイプ%0a🍄特性:#{@result.feature}%0a🍄ネガティブレベル:#{@result.level}%0a"+ text + "%0a%23きのこ%20%0a%23きのこネガティブ診断%20%0a"
+    # text部分はエンコード化することで400エラーを防ぐことができる
+    tweet_contents = "#{URI.encode_www_form_component(@account.name)}さんは...%0a#{@result.name}タイプ%0a🍄特性:#{@result.feature}%0a🍄ネガティブレベル:#{@result.level}%0a"+ text + "%0a%23きのこ%20%0a%23きのこネガティブ診断%20%0a"
     # add_url_parameter
     # shareURL = base + tweet_contents + @url_parameter
     shareURL = base + tweet_contents + root_url
