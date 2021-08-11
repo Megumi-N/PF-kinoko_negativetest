@@ -8,7 +8,7 @@ class ResultsController < ApplicationController
     # negativeの平均割合から分岐
     twitter_analysis
     case @ave
-    when 0.90...1.00
+    when 0.90..1.00
       kinoko = 1
     when 0.80...0.90
       kinoko = 2
