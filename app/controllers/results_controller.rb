@@ -43,7 +43,12 @@ class ResultsController < ApplicationController
     # exclude_replies: true => 返信を除去, include_rts: false => retweetを除去
     @client.user_timeline(@user, exclude_replies: true, include_rts: false).take(5).each do |tw|
       # ハッシュ、url、空欄、改行、ファイルを削除。gsub(/http.*\/\/t.co\/.*$/, "")
-      @tweets << tw.text.gsub(/#.*$/, "").gsub(/http.*\s/, "").gsub(/[ 　]+/,"").gsub(/\n/,"")
+      tweet = tw.text.gsub(/#.*$/, "").gsub(/http.*\s/, "").gsub(/[ 　]+/,"").gsub(/\n/,"")
+      if tweet.present?
+        @tweets << tweet
+      else
+        @tweets << tweet.replace("\s")
+      end
     end
 
     twitter_params = {
