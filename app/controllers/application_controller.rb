@@ -30,4 +30,18 @@ class ApplicationController < ActionController::Base
   def too_many_requests
     render template: 'errors/error_429', status: 429
   end
+
+  def client_pass
+    @client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = Rails.application.credentials.twitter[:api_key]
+      config.consumer_secret     = Rails.application.credentials.twitter[:api_secret_key]
+      config.access_token        = Rails.application.credentials.twitter[:access_token]
+      config.access_token_secret = Rails.application.credentials.twitter[:access_token_secret]
+    end
+  end
+
+  # root_url以外からresultにアクセス不可
+  def referrer_root_url?
+    request.referrer != root_url ? redirect_to(root_url) : false
+  end
 end
