@@ -14,8 +14,8 @@ import "jquery";
 import "bootstrap";
 import "bootstrap/scss/bootstrap";
 import "@fortawesome/fontawesome-free/js/all";
+import "./js/top";
 
-// import "./top/index";
 require("packs/application");
 
 // import "../stylesheets/application.scss";
