@@ -14,6 +14,7 @@ import "jquery";
 import "bootstrap";
 import "bootstrap/scss/bootstrap";
 import "@fortawesome/fontawesome-free/js/all";
+
 // import "./top/index";
 require("packs/application");
 
@@ -27,3 +28,4 @@ Turbolinks.start();
 ActiveStorage.start();
 
 const images = require.context("../images", true);
+global.$ = require("jquery");
