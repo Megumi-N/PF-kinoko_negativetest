@@ -35,8 +35,8 @@ class ResultsController < ApplicationController
   def twitter_analysis
     @user = user_params[:user]
     @account = @client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
-    @tweets = []
 
+    @tweets = []
     @client.user_timeline(@user, exclude_replies: true, include_rts: false).take(5).each do |tw|
       tweet = tw.text.gsub(/#.*$|[ 　]+|\n|http.*:\/\/t.co\/\w*$/,"") # ハッシュ、空欄、改行、twitterの省略url
       @tweets << tweet if tweet.present?
