@@ -34,6 +34,7 @@ class ResultsController < ApplicationController
   # twitter分析メソッド
   def twitter_analysis
     @user = user_params[:user]
+
     @account = @client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
 
     @tweets = []
