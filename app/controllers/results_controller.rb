@@ -2,8 +2,6 @@ class ResultsController < ApplicationController
   before_action :client_pass
   before_action :referrer_root_url?, only: %i(index)
 
-  # before_action :add_url_parameter, only: :index
-
   def index
     # negativeの平均割合から分岐
     twitter_analysis
@@ -37,18 +35,12 @@ class ResultsController < ApplicationController
   # twitter分析メソッド
   def twitter_analysis
     @user = user_params[:user]
-    @account = @client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
-    @tweets = []
 
-    # exclude_replies: true => 返信を除去, include_rts: false => retweetを除去
+    @account = @client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
+
+    @tweets = []
     @client.user_timeline(@user, exclude_replies: true, include_rts: false).take(5).each do |tw|
-      # ハッシュ、url、空欄、改行、ファイルを削除。gsub(/http.*\/\/t.co\/.*$/, "")
-      tweet = tw.text.gsub(/#.*$/, "").gsub(/http.*\s/, "").gsub(/[ 　]+/,"").gsub(/\n/,"")
-      if tweet.present?
-        @tweets << tweet
-      else
-        @tweets << tweet.replace("\s")
-      end
+      @tweets << tw.text.gsub(/#.*$|[ 　]+|\n|http.*:\/\/t.co\/\w*$/,"")
     end
 
     twitter_params = {
