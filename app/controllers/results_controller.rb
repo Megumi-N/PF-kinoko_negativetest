@@ -2,12 +2,9 @@ class ResultsController < ApplicationController
   before_action :client_pass
   before_action :referrer_root_url?, only: %i(index)
 
-  # before_action :add_url_parameter, only: :index
-
   def index
-    # negativeの平均割合から分岐
     twitter_analysis
-    case @ave
+    case @average
     when 0.90..1.00
       kinoko = 1
     when 0.80...0.90
@@ -40,36 +37,23 @@ class ResultsController < ApplicationController
     @account = @client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
     @tweets = []
 
-    # exclude_replies: true => 返信を除去, include_rts: false => retweetを除去
     @client.user_timeline(@user, exclude_replies: true, include_rts: false).take(5).each do |tw|
-      # ハッシュ、url、空欄、改行、ファイルを削除。gsub(/http.*\/\/t.co\/.*$/, "")
-      tweet = tw.text.gsub(/#.*$/, "").gsub(/http.*\s/, "").gsub(/[ 　]+/,"").gsub(/\n/,"")
-      if tweet.present?
-        @tweets << tweet
-      else
-        @tweets << tweet.replace("\s")
-      end
+      tweet = tw.text.gsub(/#.*$|[ 　]+|\n|http.*:\/\/t.co\/\w*$/,"") # ハッシュ、空欄、改行、twitterの省略url
+      @tweets << tweet if tweet.present?
     end
 
     twitter_params = {
       text_list: @tweets,
       language_code: "ja"
     }
-
     comprehend = Aws::Comprehend::Client.new(
       region: 'us-east-1',
     )
 
-    nega = comprehend.batch_detect_sentiment(twitter_params).result_list
-
-    i = 0
-    nega2=0
-    while i < nega.length do
-      nega2 += nega[i].sentiment_score.negative
-      i+=1
-    end
-
-    @ave = (nega2/nega.length).truncate(2)
+    comprehend_list = comprehend.batch_detect_sentiment(twitter_params).result_list
+    negative_point = 0
+    comprehend_list.each_index {|i| negative_point += comprehend_list[i].sentiment_score.negative }
+    @average = (negative_point/comprehend_list.length).truncate(2)
   end
 
   def twitter_share
