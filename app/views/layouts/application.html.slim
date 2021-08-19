@@ -6,7 +6,7 @@ html
     meta property="og:url" content ="#{request.url}"
     meta property="og:title" content =full_title(yield(:title))
     meta property="og:description" content ="#{content_for?(:description) ? yield(:description) : full_description}"
-    meta property="og:image" content ="#{content_for?(:image_url) ? yield(:image_url) : full_url(image_pack_url('kakishimezi.png'))}"
+    meta property="og:image" content ="#{content_for?(:image_url) ? yield(:image_url) : full_url(image_pack_url('twitter_card_image.png'))}"
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     - if Rails.env.production?
       = render template: 'shared/_analysis'
