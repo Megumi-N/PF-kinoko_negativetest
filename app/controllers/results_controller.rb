@@ -4,7 +4,7 @@ class ResultsController < ApplicationController
 
   def index
     twitter_analysis
-    @result = Result.find_by!(level: @average)
+    @result = Result.find_by!(level: @negative_level)
     @wise_sayings = @result.wise_sayings.sample(3)
     @share = twitter_share
   end
@@ -33,10 +33,10 @@ class ResultsController < ApplicationController
     negative_point = 0
     comprehend_list.each_index {|i| negative_point += comprehend_list[i].sentiment_score.negative }
 
-    # @average=(0.21.ceil(1))*10
+    # @negative_level=(0.21.ceil(1))*10
     # (negative_point/comprehend_list.length)でnegative_pointの平均値を算出し、
     # transcaleで少数第二位までの値を取得、ceilで切り上げを行ってlevelに合致する値を算出する
-    @average = (negative_point/comprehend_list.length).truncate(2).ceil(1)*10
+    @@negative_level = (negative_point/comprehend_list.length).truncate(2).ceil(1)*10
   end
 
   def twitter_share
