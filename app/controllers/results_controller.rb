@@ -4,29 +4,7 @@ class ResultsController < ApplicationController
 
   def index
     twitter_analysis
-    case @average
-    when 0.90..1.00
-      kinoko = 1
-    when 0.80...0.90
-      kinoko = 2
-    when 0.70...0.80
-      kinoko = 3
-    when 0.60...0.70
-      kinoko = 4
-    when 0.50...0.60
-      kinoko = 5
-    when 0.40...0.50
-      kinoko = 6
-    when 0.30...0.40
-      kinoko = 7
-    when 0.20...0.30
-      kinoko = 8
-    when 0.10...0.20
-      kinoko = 9
-    else
-      kinoko = 10
-    end
-    @result = Result.find(kinoko)
+    @result = Result.find_by!(level: @average)
     @wise_sayings = @result.wise_sayings.sample(3)
     @share = twitter_share
   end
@@ -54,7 +32,11 @@ class ResultsController < ApplicationController
     comprehend_list = comprehend.batch_detect_sentiment(twitter_params).result_list
     negative_point = 0
     comprehend_list.each_index {|i| negative_point += comprehend_list[i].sentiment_score.negative }
-    @average = (negative_point/comprehend_list.length).truncate(2)
+
+    # @average=(0.21.ceil(1))*10
+    # (negative_point/comprehend_list.length)でnegative_pointの平均値を算出し、
+    # transcaleで少数第二位までの値を取得、ceilで切り上げを行ってlevelに合致する値を算出する
+    @average = (negative_point/comprehend_list.length).truncate(2).ceil(1)*10
   end
 
   def twitter_share
