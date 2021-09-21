@@ -3,38 +3,11 @@ class ResultsController < ApplicationController
   before_action :referrer_root_url?, only: %i(index)
 
   def index
-    twitter_analysis
-    @result = Result.find_by!(level: @negative_level)
+    negative_level = Twitter::NegativeLevelCaluculationService.call(screen_name: params[:user], client: @client)
+    @result = Result.find_by(level: negative_level)
     @wise_sayings = @result.wise_sayings.sample(3)
+    @account = @client.user(@user)
     @share = twitter_share
-  end
-
-  # twitter分析メソッド
-  def twitter_analysis
-    @user = user_params[:user]
-    @account = @client.user(@user) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
-    # @tweets = []
-    # @client.user_timeline(@user, exclude_replies: true, include_rts: false).take(5).each do |tw|
-    #   tweet = tw.text.gsub(/#.*$|[ 　]+|\n|http.*:\/\/t.co\/\w*$/,"") # ハッシュ、空欄、改行、twitterの省略url
-    #   @tweets << tweet if tweet.present?
-    # end
-
-    # twitter_params = {
-    #   text_list: @tweets,
-    #   language_code: "ja"
-    # }
-    # comprehend = Aws::Comprehend::Client.new(
-    #   region: 'us-east-1',
-    # )
-
-    # comprehend_list = comprehend.batch_detect_sentiment(twitter_params).result_list
-    # negative_point = 0
-    # comprehend_list.each_index {|i| negative_point += comprehend_list[i].sentiment_score.negative }
-
-    @negative_level=(0.21.ceil(1))*10
-    # (negative_point/comprehend_list.length)でnegative_pointの平均値を算出し、
-    # transcaleで少数第二位までの値を取得、ceilで切り上げを行ってlevelに合致する値を算出する
-    # @negative_level = (negative_point/comprehend_list.length).truncate(2).ceil(1)*10
   end
 
   def twitter_share
@@ -48,10 +21,6 @@ class ResultsController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.permit(:user)
-  end
 
   def add_url_parameter
     @url_parameter = url_for(controller: 'results', action: :index, id: SecureRandom.hex(10))
