@@ -4,7 +4,6 @@ class ResultsController < ApplicationController
 
   def index
     negative_level = Twitter::NegativeLevelCaluculationService.call(screen_name: params[:user], client: @client)
-    binding.pry
     @result = Result.find_by!(level: negative_level)
     @wise_sayings = @result.wise_sayings.sample(3)
     @account = @client.user(params[:user]) # アカウントが存在するかどうか確認、一致しなかった場合Twitter::Error::NotFoundが発生
